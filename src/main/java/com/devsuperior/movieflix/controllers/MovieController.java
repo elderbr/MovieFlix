@@ -29,6 +29,7 @@ public class MovieController {
         return ResponseEntity.ok(service.findByMovieWithByIdGenrePageable(genreId, pageable));
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_MEMBER','ROLE_VISITOR')")
     @GetMapping(value = "/{id}/reviews")
     public ResponseEntity<Page<MovieWithReviewDTO>> findByMovieWithByIdReview(@PathVariable Long id, Pageable pageable) {
         return ResponseEntity.ok(service.findByMovieWithByIdReviewPageable(id, pageable));
